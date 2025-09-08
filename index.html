@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Woodworking Portfolio</title>
+  <style>
+    /* Fixed full-screen gradient behind everything */
+    body::before {
+      content:"";
+      position: fixed;
+      inset: 0;
+      z-index: -1;           /* behind everything */
+      background: url("images/suches-fog.jpeg") center center / cover no-repeat;
+    }
+
+
+    header{padding:1rem;font-size:8.5rem;font-weight:700;background:#964604;position:sticky;z-index:2}
+
+    /* Hero section at top */
+    .hero{
+      position:relative;
+      height:clamp(900px,70vh,900px);
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.3)),
+        url("videos/turning.mov") center 35% / cover no-repeat;
+    }
+    .hero-text{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#000000b3;padding:0 1rem}
+    .hero-text h1{font-size:clamp(2rem,6vw,5rem);margin:0 0 1rem}
+    .hero-text p{font-size:clamp(1rem,2vw,2rem);max-width:800px}
+
+    /* Bottom banner */
+    .banner{display:flex;align-items:center;justify-content:center;height:auto;background:none;margin-top:2rem}
+    .banner img{width:100%;height:auto;display:block}
+    .banner-text{flex:1;padding:2rem}
+    .banner-text p{font-size:2.75rem;line-height:1.5}
+
+    .gallery{display:flex;flex-direction:column;align-items:center;gap:2rem;padding:2rem;max-width:2000px;margin:auto}
+    
+    .project {
+      width: 80%;
+      border-top: 1px solid #ddd;
+      padding-top: 1.5rem;
+      text-align: center;     /* centers the h2 */
+    }
+
+    .project h2 {
+      display: inline-block;          /* keeps background tight to text */
+      background: rgba(255, 255, 255, 0.6);    /* bubble color */
+      color: #000000;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+    }
+
+    .project h2{margin-bottom:1rem;font-size:1.2rem}
+    .row{display:flex;flex-wrap:wrap;gap:1rem}
+    .thumb{flex:1 1 560px}
+    .thumb img{width:100%;height:auto;display:block;cursor: zoom-in;}
+    .caption {
+      margin-top: .25rem;
+      font-size: .9rem;
+      color: #000000;               /* white text for contrast */
+      background: rgba(255, 255, 255, 0.6); /* semi-transparent black background */
+      padding: 0.25rem 0.5rem;   /* space inside box */
+      border-radius: 4px;        /* optional: rounded corners */
+      display: inline-block;     /* so the background fits text */
+    }
+
+    .fullwidth { flex: 1 1 100%; }
+
+
+    /* Lightbox overlay */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:10000;padding:2rem}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:95vw;max-height:95vh;box-shadow:0 0 24px rgba(0,0,0,.6);}
+    .lightbox .close{position:absolute;top:12px;right:16px;background:rgba(255,255,255,.9);border:1px solid #ddd;border-radius:10px;padding:6px 10px;font-weight:600;cursor:pointer}
+  
+    html { scroll-behavior: smooth; }
+
+    .navbar{
+        position: sticky; top: 0; z-index: 1000;
+        display:flex; gap:1.5rem; justify-content:center; align-items:center;
+        background:#0d5d1000; padding:0.75rem 1rem;
+      }
+    .navbar a{
+        color:#c36e35b9; text-decoration:none; font-weight:700; font-size:1.1rem;
+      }
+    .navbar a:hover{ text-decoration:underline; }
+
+      /* ensure anchors aren’t hidden under the sticky bar */
+    section[id] { scroll-margin-top: 72px; }
+
+  </style>
+</head>
+
+<script>
+  
+</script>
+
+
+<body>
+
+<nav class="navbar">
+  <a href="#works">Projects</a>
+  <a href="#behind">Behind the Scenes</a>
+  <a href="#about">About Me</a>  
+</nav>
+
+  <!-- Hero section at the top -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>SPENCER'S WORK SHOP</h1>
+      <p>Hi! My name is Spencer and I like to make things. Here is a selection of my projects, I hope you enjoy!</p>
+    </div>
+  </div>
+
+  <main class="gallery" id="works">
+    <!-- Bedside Tables -->
+    <section class="project">
+      <h2> Bedside tables with Laser-etched designs</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/side-max.jpeg" alt="Bedside table three-quarter view">
+          <div class="caption">A graduation gift for my brother doing Internal Medicine</div>
+        </div>
+        <div class="thumb">
+          <img src="images/max2.jpeg" alt="Bedside table reverse angle">
+          <div class="caption">Reverse angle</div>
+        </div>
+      </div>
+      <div class="thumb">
+        <img src="images/maxtop.jpeg" alt="Engraved top surface close-up">
+        <div class="caption">Engrved top with standard lab values</div>
+      </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/bedside-corner.jpeg" alt="Corner joinery detail">
+          <div class="caption">Personal Nightstand</div>
+        </div>
+        <div class="thumb">
+          <img src="images/bedsidefront.jpeg" alt="Drawer joinery detail">
+          <div class="caption">Drawer for books and computer</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thumb" style="flex:1 1 100%">
+          <img src="images/bedside-top.jpeg" alt="Finished bedside table top">
+          <div class="caption">Engraved top with art from Carl Krull</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Turning projects -->
+    <section class="project">
+      <h2>Wood Turning</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/bowl-back.jpeg" alt="Turned bowl, underside view">
+          <div class="caption">Maple Bowl</div>
+        </div>
+        <div class="thumb">
+          <img src="images/bowl-flat.jpeg" alt="Turned bowl, top view">
+          <div class="caption">Bowl top</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/turning4.jpeg" alt="Turned piece on lathe">
+          <div class="caption">Single stem flower vases and honey sticks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dining Tables -->
+    <section class="project">
+      <h2>Tables and Shelves and Things</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/chanel-top.jpeg" alt="Dining table top">
+          <div class="caption">Dining table 2.0</div>
+        </div>
+        <div class="thumb">
+          <img src="images/chanel-corner.jpeg" alt="Dining table corner detail">
+          <div class="caption"> </div>
+        </div>
+        <div class="thumb fullwidth">
+          <img src="images/chanel-side.jpeg" alt="Dining table side view">
+          <div class="caption"> </div>
+        </div>
+        <div class="thumb">
+          <img src="images/coffee room.jpeg" alt="Dining table corner detail">
+          <div class="caption">Coffee Table</div>
+        </div>
+        <div class="thumb">
+          <img src="images/tableroom.jpeg" alt="Dining table corner detail">
+          <div class="caption">Kitchen Table 1.0</div>
+        </div>
+        <div class="thumb">
+          <img src="images/sword-mount.jpeg" alt="Tall shelf unit, view 2">
+          <div class="caption">Branched bookshelf and sword mounts</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lamps -->
+    <section class="project">
+      <h2>Lamps!</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/light-top.jpeg" alt="Lamp top detail">
+          <div class="caption">Bedside reading lamp made of an old bowl and plywood</div>
+        </div>
+        <div class="thumb">
+          <img src="images/light-full.jpeg" alt="Lamp side view">
+          <div class="caption">Lamp and bedside table</div>
+        </div>
+        <div class="thumb fullwidth">
+          <img src="images/headboard-dark.jpeg" alt=Headboard with built in dimmable nightlight">
+          <div class="caption">Headboard with dimmable reading light, engraved with line art from Carl Krull</div>
+        </div>
+        <div class="thumb">
+          <img src="images/snake-lit.jpeg" alt="Lamp lit at night">
+          <div class="caption">Original Design Snake shaped lamp to light a painting</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Laser cut reliefs -->
+    <section class="project">
+      <h2>Stacked, Laser Cut Plywood</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/devil.jpeg" alt="Laser-cut relief, devil motif">
+          <div class="caption">Duke Blue Devil reimagnined</div>
+        </div>
+        <div class="thumb">
+          <img src="images/bulldog.jpeg" alt="Laser-cut relief, bulldog motif">
+          <div class="caption">UGA Bulldawg reimagnined</div>
+        </div>
+        <div class="thumb">
+          <img src="images/sailboat-square.jpeg" alt="Laser-cut relief, sailboat scene">
+          <div class="caption">Sailboat sketch given as a gift</div>
+        </div>
+        <div class="thumb">
+          <img src="images/Crest.jpeg" alt="Laser-cut relief, sailboat scene">
+          <div class="caption">Duke University crest</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Misc -->
+    <section class="project">
+      <h2>Misc. Tinkering</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="videos/tick.mov" alt="Handmade wooden clock">
+          <div class="caption">Clock made of glazed clay</div>
+        </div>
+        <div class="thumb fullwidth">
+          <img src="videos/keys.mov" alt="Key mechanism animation">
+          <div class="caption">Key hanger with reversable in/out hat!</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/boo-dark.jpeg" alt="Halloween decor, dark version">
+          <div class="caption">Hallowean Boo-Devil Yard sign</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/2109.jpeg" alt="house sign">
+          <div class="caption">House Numbers (2109 E. Main Street)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BTS -->
+    <section class="project" id="behind">
+      <h2>Behind the Scenes!</h2>
+      <div class="row">
+        <div class="thumb">
+          <img src="videos/laser.mov" alt="Handmade wooden clock">
+          <div class="caption">laser etching the standard lab value design</div>
+        </div>
+        <div class="thumb">
+          <img src="images/computer.JPEG" alt="Key mechanism animation">
+          <div class="caption">Designing the Bulldawg</div>
+        </div>
+        <div class="thumb">
+          <img src="images/BTS bulldog.jpeg "alt="Key mechanism animation">
+          <div class="caption">glue up and painting</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/bts-snake.jpeg" alt="Halloween decor, dark version">
+          <div class="caption">snakes before lamp hardware</div>
+        </div>
+      <div class="row">
+        <div class="thumb">
+          <img src="images/shop2.jpeg" alt="Halloween decor, dark version">
+          <div class="caption">Wood turning shop I borrow from time to time</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Banner at bottom -->
+  <div class="banner" id="about">
+    <div style="flex:1;">
+      <img id="about-photo" src="images/mugging.jpeg" alt="Portrait of Spencer in workshop">
+    </div>
+    <div class="banner-text">
+      <p> I picked up woodworkking as a COVID hobby that has since balloned into an obsession. As the years have gone on I've begun to incoperate more technology into my work, utilizing CAD and CNC tools. I enjoy making things with and for my friends and family and taking my inspiration from the world around me.</p>
+    </div>
+  </div>
+
+  <!-- Lightbox overlay (shared for all images) -->
+  <div class="lightbox" id="lightbox">
+    <button class="close" id="lightbox-close" aria-label="Close">Close</button>
+    <img id="lightbox-img" alt="expanded image">
+  </div>
+
+  <script>
+    // Simple JS lightbox: click any gallery image to open full-size
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbClose = document.getElementById('lightbox-close');
+
+    function openLightbox(src, alt){
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lb.classList.add('open');
+    }
+    function closeLightbox(){ lb.classList.remove('open'); lbImg.removeAttribute('src'); }
+
+    document.addEventListener('click', (e)=>{
+      const img = e.target.closest('.gallery img');
+      if(img){
+        e.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      }
+    });
+
+    lb.addEventListener('click', (e)=>{
+      if(e.target === lb || e.target === lbClose){ closeLightbox(); }
+    });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+    //rotating photo
+    const aboutImg = document.getElementById("about-photo");
+const aboutPhotos = [
+    "images/mugging.jpeg",
+    "images/mug1.jpeg",
+    "images/mug7.jpeg",     
+    "images/mug4.jpeg", 
+    "images/mug8.jpeg",
+    "images/mug3.jpeg",
+    "images/mug5.jpeg",
+    "images/mug2.jpeg",
+    "images/mug-book.jpeg",
+    "images/mug-scruf.jpeg",
+    "images/mug-bed.jpeg",
+    "images/mug-fountain.jpeg",
+    "images/mug-hammok.jpeg",
+    "images/mug-grass.jpeg",
+    "images/mug10.jpeg"
+  ];
+      aboutImg.style.transition = "opacity 600ms";
+    aboutPhotos.forEach(src => { const i = new Image(); i.src = src; });
+
+    let aboutIndex = 0;
+    setInterval(() => {
+    aboutIndex = (aboutIndex + 1) % aboutPhotos.length;
+    aboutImg.style.opacity = "0";
+    setTimeout(() => {
+    aboutImg.src = aboutPhotos[aboutIndex];
+    aboutImg.style.opacity = "1";
+    }, 0);
+    }, 3000);
+  </script>
+</body>
+</html>
